@@ -32,8 +32,8 @@ class App extends Component {
     }
   }
 
-  validateImages() {
-    if (this.state.images.length === 0) {
+  validateImages(images) {
+    if (images.length === 0) {
       this.setState({error: "Zero images retrieved"});
     }
   }
@@ -64,7 +64,7 @@ class App extends Component {
     }
     this.setState({images: IMAGES},
       function() {
-        this.validateImages();
+        this.validateImages(this.state.images);
       }
     );
     this.setState({colors: COLORS},
@@ -74,7 +74,26 @@ class App extends Component {
   }
 
   sortByColor() {
+    var combined = [];
+    var colorsSorted = [];
+    for (let i=0; i<this.state.colors.length; i++) {
+      combined.push({color: this.state.colors[i], img: this.state.images[i]})
+    };
+    combined.sort(function(c1, c2) {
+      return c1.color[0] - c2.color[0];
+    });
 
+    for (let i=0; i<combined.length; i++) {
+      colorsSorted[i] = combined[i].img;
+    };
+
+    this.setState({
+      imagesbycolor: colorsSorted,
+      colorSorted: true
+      },
+      function() {
+        this.validateImages(this.state.imagesbycolor);
+      })
   }
 
   render() {
