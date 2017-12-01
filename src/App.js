@@ -109,9 +109,6 @@ class App extends Component {
           <button className="Button" onClick={() => this.sortByColor()}>Sort by Color</button>
         </header>
         <Gallery images={this.state.colorSorted ? this.state.imagesbycolor : this.state.images}/>
-        <p className="App-footer">
-          What a beautiful rainbow.
-        </p>
       </div>
     );
   }

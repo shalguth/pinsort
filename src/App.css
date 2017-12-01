@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background: #589bce;
+  height: 1500px;
 }
 
 .App-logo {
@@ -23,6 +25,7 @@
 
 .App-footer {
   font-size: large;
+  padding: 50px;
 }
 
 .Button {
