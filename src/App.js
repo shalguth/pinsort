@@ -11,6 +11,8 @@ class App extends Component {
       images: [],
       colors: [],
       error: null,
+      imagesbycolor: [],
+      colorSorted: false,
     };
   }
 
@@ -30,14 +32,22 @@ class App extends Component {
     }
   }
 
-  validate() {
+  validateImages() {
     if (this.state.images.length === 0) {
       this.setState({error: "Zero images retrieved"});
     }
   }
 
+  validateColors() {
+    if (this.state.colors.length === 0) {
+      this.setState({error: "Zero colors retrieved"});
+    }
+  }
+
   getImagesAndCodes() {
-    const IMAGES = []
+    var convert = require('color-convert');
+    const IMAGES = [];
+    const COLORS = [];
     for(let i=0; i<(this.state.pins.length); i++) {
       let url = this.state.pins[i].images["237x"]["url"];
       let width = this.state.pins[i].images["237x"]["width"];
@@ -49,13 +59,22 @@ class App extends Component {
         thumbnailWidth: width,
         thumbnailHeight: height
       })
+      COLORS.push(convert.hex.hsl(this.state.pins[i].dominant_color));
 
     }
     this.setState({images: IMAGES},
       function() {
-        this.validate();
+        this.validateImages();
       }
     );
+    this.setState({colors: COLORS},
+      function() {
+        this.validateColors();
+      })
+  }
+
+  sortByColor() {
+
   }
 
   render() {
@@ -67,9 +86,10 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to PinSort!</h1>
+          <h1 className="App-title">Welcome to PinSort! </h1>
+          <button className="Button" onClick={() => this.sortByColor()}>Sort by Color</button>
         </header>
-        <Gallery images={this.state.images}/>
+        <Gallery images={this.state.colorSorted ? this.state.imagesbycolor : this.state.images}/>
         <p className="App-footer">
           What a beautiful rainbow.
         </p>

@@ -18,10 +18,19 @@
 
 .App-title {
   font-size: 1.5em;
+
 }
 
 .App-footer {
   font-size: large;
+}
+
+.Button {
+  border-radius: 4px;
+  background-color: #61dafb;
+  transition-duration: 0.4s;
+  border: none;
+  float: right;
 }
 
 @keyframes App-logo-spin {
