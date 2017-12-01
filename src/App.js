@@ -21,9 +21,6 @@ class App extends Component {
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4 && (xhr.status === 200 || xhr.state === 304)){
         var response = JSON.parse(xhr.responseText);
-        //console.log(response);
-        //console.log(response.data.pins[5].domain)
-        //console.log(response.data.pins)
         this.setState({pins: response.data.pins},
           function() {
             this.getImagesAndCodes();
@@ -31,7 +28,6 @@ class App extends Component {
         );
       }
     }
-
   }
 
   validate() {
@@ -71,11 +67,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to PinSort</h1>
+          <h1 className="App-title">Welcome to PinSort!</h1>
         </header>
-        <body>
         <Gallery images={this.state.images}/>
-        </body>
         <p className="App-footer">
           What a beautiful rainbow.
         </p>
