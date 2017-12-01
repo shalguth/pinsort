@@ -6,6 +6,7 @@
     "color-convert": "^1.9.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-grid-gallery": "^0.4.7",
     "react-scripts": "1.0.17"
   },
   "scripts": {
